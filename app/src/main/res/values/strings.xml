@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Recorded money</string>
+    <string name="clock_icon_description" translatable="false">clock icon description</string>
+    <!--the translated -->
+    <string name="tasks_no">number of tasks</string>
+    <string name="cash_icon_content_desc" translatable="false">cash icon</string>
+    <string name="home_page_title">Recorded money</string>
+    <string name="add_record_content_desc" translatable="false">add record content desc</string>
+    <string name="language_icon" translatable="false">language icon</string>
+    <string name="record_name">Record Name</string>
+    <string name="record_collected_money">Collected Money</string>
+    <string name="record_spent_money">"Spent Money "</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="add_record">Add record</string>
+    <string name="edit_icon_content_description" translatable="false">edit icon content description</string>
+    <string name="delete_icon_content_description" translatable="false">delete icon content description</string>
+    <string name="total_collected">Total collected</string>
+    <string name="total_spent">Total spent</string>
+    <string name="rest_money">Rest money</string>
+</resources>

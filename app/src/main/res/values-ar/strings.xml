@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تسجيل المال</string>
+    <string name="tasks_no">عدد المهام</string>
+    <string name="home_page_title">تسجيل المال </string>
+    <string name="record_name">اسم السجل</string>
+    <string name="record_collected_money">المال المحصل </string>
+    <string name="record_spent_money">المال المدفوع </string>
+    <string name="cancel">الغاء</string>
+    <string name="add">اضافة</string>
+    <string name="add_record">اضافة سجل</string>
+    <string name="total_collected">اجمالي المستحقات</string>
+    <string name="total_spent">اجمالي المصروفات</string>
+    <string name="rest_money">الباقي</string>
+</resources>
