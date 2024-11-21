@@ -12,4 +12,6 @@
     <string name="total_collected">اجمالي المستحقات</string>
     <string name="total_spent">اجمالي المصروفات</string>
     <string name="rest_money">الباقي</string>
+    <string name="attachment_page_title">صفحة المرفقات </string>
+    <string name="update">تحديث</string>
 </resources>

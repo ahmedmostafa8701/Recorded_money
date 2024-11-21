@@ -17,6 +17,8 @@ class HomePageViewModel @Inject constructor(
 ) : ViewModel(){
     private val _recordsState = MutableStateFlow<RecordState>(RecordState.Initial)
     val recordsState = _recordsState.asStateFlow()
+    private val _dialogState = MutableStateFlow<RecordDialogState>(RecordDialogState.Dismiss)
+    val dialogState = _dialogState.asStateFlow()
     init {
         loadRecords()
     }
@@ -42,5 +44,14 @@ class HomePageViewModel @Inject constructor(
             recordLocalRepo.deleteRecord(record)
             loadRecords()
         }
+    }
+    fun showAddDialog(){
+        _dialogState.value = RecordDialogState.Enable()
+    }
+    fun showUpdateDialog(record:RecordModel){
+        _dialogState.value = RecordDialogState.Enable(record)
+    }
+    fun dismissDialog(){
+        _dialogState.value = RecordDialogState.Dismiss
     }
 }

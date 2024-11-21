@@ -18,4 +18,6 @@
     <string name="total_collected">Total collected</string>
     <string name="total_spent">Total spent</string>
     <string name="rest_money">Rest money</string>
+    <string name="attachment_page_title">Attachment Page</string>
+    <string name="update">Update</string>
 </resources>
