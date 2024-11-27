@@ -4,6 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import com.am_apps.recorded_money.db.RecordDatabase
 import com.am_apps.recorded_money.db.doa.RecordDoa
+import com.am_apps.recorded_money.features.attachments.data.AttachmentRepoImpl
+import com.am_apps.recorded_money.features.attachments.domain.repo.AttachmentRepo
 import com.am_apps.recorded_money.features.home_page.data.RecordLocalRepoRoomImpl
 import com.am_apps.recorded_money.features.home_page.domain.RecordLocalRepo
 import dagger.Module
@@ -31,5 +33,9 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRecordLocalRepo(recordDao: RecordDoa): RecordLocalRepo = RecordLocalRepoRoomImpl(recordDao)
+
+    @Provides
+    @Singleton
+    fun provideAttachmentRepo(application: Application): AttachmentRepo = AttachmentRepoImpl(application)
 
 }

@@ -1,4 +1,4 @@
-package com.am_apps.recorded_money.core.widgets
+package com.am_apps.recorded_money.core.presentation.composables
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
