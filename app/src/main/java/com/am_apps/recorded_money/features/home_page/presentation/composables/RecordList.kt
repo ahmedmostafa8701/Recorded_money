@@ -1,5 +1,6 @@
 package com.am_apps.recorded_money.features.home_page.presentation.composables
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,7 +15,8 @@ fun RecordList(
     modifier: Modifier = Modifier,
     records: List<RecordModel>,
     onDelete: (record: RecordModel) -> Unit,
-    onUpdate: (record: RecordModel) -> Unit
+    onUpdate: (record: RecordModel) -> Unit,
+    onRecordClicked: (recordId: Long) -> Unit
 ) {
     LazyColumn(
         modifier = modifier
@@ -29,6 +31,9 @@ fun RecordList(
                 },
                 onUpdate = { record ->
                     onUpdate(record)
+                },
+                modifier = Modifier.clickable {
+                    onRecordClicked(records[it].id)
                 }
             )
         }

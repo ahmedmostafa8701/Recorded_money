@@ -20,4 +20,5 @@
     <string name="rest_money">Rest money</string>
     <string name="attachment_page_title">Attachment Page</string>
     <string name="update">Update</string>
+    <string name="supported_attachments">Supported attachments</string>
 </resources>
