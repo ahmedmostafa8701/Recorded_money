@@ -1,0 +1,45 @@
+package com.am_apps.recorded_money.features.tasks.presentation.view_model
+
+import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.am_apps.recorded_money.core.domain.model.TaskModel
+import com.am_apps.recorded_money.features.tasks.domain.TasksLocalRepo
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class TasksViewModel @Inject constructor(
+    private val tasksLocalRepo: TasksLocalRepo,
+    stateHandle: SavedStateHandle
+):ViewModel() {
+
+    private val recordId: Long? = stateHandle["recordId"]
+    private val _tasksState = MutableStateFlow<List<TaskModel>>(emptyList())
+    val tasksState = _tasksState.asStateFlow()
+
+    init {
+        loadTasks()
+    }
+
+    fun addTask(task: TaskModel) {
+        viewModelScope.launch {
+            tasksLocalRepo.addTask(task)
+            loadTasks()
+        }
+    }
+    fun deleteTask(task: TaskModel) {
+        viewModelScope.launch {
+            tasksLocalRepo.deleteTask(task)
+            loadTasks()
+        }
+    }
+    private fun loadTasks() {
+        viewModelScope.launch {
+            recordId?.let { _tasksState.value = tasksLocalRepo.fetchTasks(it) }
+        }
+    }
+}

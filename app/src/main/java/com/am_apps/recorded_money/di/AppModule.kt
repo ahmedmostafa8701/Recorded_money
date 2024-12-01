@@ -8,6 +8,8 @@ import com.am_apps.recorded_money.features.attachments.data.AttachmentRepoImpl
 import com.am_apps.recorded_money.features.attachments.domain.repo.AttachmentRepo
 import com.am_apps.recorded_money.features.home_page.data.RecordLocalRepoRoomImpl
 import com.am_apps.recorded_money.features.home_page.domain.RecordLocalRepo
+import com.am_apps.recorded_money.features.tasks.data.TaskLocalRepoImpl
+import com.am_apps.recorded_money.features.tasks.domain.TasksLocalRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,4 +40,7 @@ object AppModule {
     @Singleton
     fun provideAttachmentRepo(application: Application): AttachmentRepo = AttachmentRepoImpl(application)
 
+    @Provides
+    @Singleton
+    fun provideTasksRepo(recordDao: RecordDoa): TasksLocalRepo = TaskLocalRepoImpl(recordDao)
 }

@@ -47,9 +47,8 @@ fun HomePage(navController: NavController, viewModel: HomePageViewModel) {
                 modifier = Modifier
                     .padding(padding)
                     .padding(
-                        top = paddingVertical,
-                        start = paddingHorizontal,
-                        end = paddingHorizontal
+                        vertical = paddingVertical,
+                        horizontal = paddingHorizontal
                     ),
                 verticalArrangement = Arrangement.spacedBy(5.dp)
             ) {

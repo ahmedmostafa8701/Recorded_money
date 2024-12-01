@@ -21,4 +21,8 @@
     <string name="attachment_page_title">Attachment Page</string>
     <string name="update">Update</string>
     <string name="supported_attachments">Supported attachments</string>
+    <string name="tasks">Tasks</string>
+    <string name="date">Date</string>
+    <string name="task_name">Task Name</string>
+    <string name="add_task">Add Task</string>
 </resources>
