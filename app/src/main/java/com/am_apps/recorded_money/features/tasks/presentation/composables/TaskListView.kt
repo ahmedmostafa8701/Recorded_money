@@ -1,6 +1,5 @@
 package com.am_apps.recorded_money.features.tasks.presentation.composables
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
@@ -19,7 +18,6 @@ fun TaskListView(
     tasks: List<TaskModel>,
     onDelete: (record: TaskModel) -> Unit,
     onUpdate: (record: TaskModel) -> Unit,
-    onRecordClicked: (recordId: Long) -> Unit
 ) {
     LazyColumn(
         modifier = modifier
@@ -37,9 +35,6 @@ fun TaskListView(
                 onUpdate = { record ->
                     onUpdate(record)
                 },
-                modifier = Modifier.clickable {
-                    onRecordClicked(tasks[it].id)
-                }
             )
         }
     }
@@ -50,13 +45,11 @@ fun TaskListView(
 fun TasksViewPreview() {
     RecordedMoneyTheme {
         TaskListView(tasks = listOf(
-            TaskModel(1, "Task 1", 10.0, "2021-09-01", 1),
-            TaskModel(1, "Task 2", 10.0, "2021-09-01", 1),
-            TaskModel(1, "Task 3", 10.0, "2021-09-01", 1),
-            TaskModel(1, "Task 4", 10.0, "2021-09-01", 1),
-            TaskModel(1, "Task 5", 10.0, "2021-09-01", 1),
-        ), onDelete = {}, onUpdate = {}) {
-
-        }
+            TaskModel(1, "Task 1", 10.0, "2021-09-01", "10:30",1),
+            TaskModel(1, "Task 2", 10.0, "2021-09-01", "10:30",1),
+            TaskModel(1, "Task 3", 10.0, "2021-09-01", "10:30",1),
+            TaskModel(1, "Task 4", 10.0, "2021-09-01", "10:30",1),
+            TaskModel(1, "Task 5", 10.0, "2021-09-01", "10:30",1),
+        ), onDelete = {}, onUpdate = {})
     }
 }

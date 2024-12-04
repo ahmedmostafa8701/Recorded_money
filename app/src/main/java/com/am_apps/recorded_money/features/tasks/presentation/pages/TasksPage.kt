@@ -23,19 +23,24 @@ import com.am_apps.recorded_money.core.presentation.composables.CustomFab
 import com.am_apps.recorded_money.db.RecordDatabase
 import com.am_apps.recorded_money.features.home_page.presentation.composables.TotalMoneyDetails
 import com.am_apps.recorded_money.features.tasks.data.TaskLocalRepoImpl
+import com.am_apps.recorded_money.features.tasks.presentation.composables.TaskDialog
 import com.am_apps.recorded_money.features.tasks.presentation.composables.TaskListView
+import com.am_apps.recorded_money.features.tasks.presentation.view_model.TaskDialogState
 import com.am_apps.recorded_money.features.tasks.presentation.view_model.TasksViewModel
 import com.am_apps.recorded_money.ui.theme.RecordedMoneyTheme
 
 @Composable
 fun TasksPage(
+    viewModel: TasksViewModel,
     modifier: Modifier = Modifier,
-    viewModel: TasksViewModel
 ) {
     val tasksState = viewModel.tasksState.collectAsState()
+    val dialogState = viewModel.dialogState.collectAsState()
     Scaffold (
         topBar = { CustomAppBar(title = stringResource(id = R.string.tasks)) },
-        floatingActionButton = {CustomFab {}},
+        floatingActionButton = {CustomFab {
+            viewModel.showAddDialog()
+        }},
         modifier = modifier
             .fillMaxSize()
             .systemBarsPadding()
@@ -55,9 +60,18 @@ fun TasksPage(
             TaskListView(
                 tasks = tasksState.value,
                 onDelete = { viewModel.deleteTask(it) },
-                onUpdate = {viewModel.addTask(it)}
-            ){}
+                onUpdate = {viewModel.showUpdateDialog(it)},
+            )
         }
+    }
+    if (dialogState.value is TaskDialogState.Enable) {
+        TaskDialog(
+            onConfirm = { task ->
+                viewModel.addTask(task)
+            }, onDismissRequest = {
+                viewModel.dismissDialog()
+            }, taskDialogState = dialogState.value as TaskDialogState.Enable
+        )
     }
 }
 
@@ -67,7 +81,7 @@ fun TasksPagePreview() {
     RecordedMoneyTheme{
         val db = Room.databaseBuilder<RecordDatabase>(LocalContext.current, RecordDatabase::class.java, "recorded_money_db").build()
         val repo = TaskLocalRepoImpl(db.recordDoa())
-        val viewModel: TasksViewModel = TasksViewModel(repo, SavedStateHandle())
-        TasksPage(viewModel = viewModel)
+        val viewModel = TasksViewModel(repo, SavedStateHandle())
+        TasksPage(viewModel)
     }
 }

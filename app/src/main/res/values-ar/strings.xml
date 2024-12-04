@@ -19,4 +19,5 @@
     <string name="date">التاريخ</string>
     <string name="task_name">اسم المهمة</string>
     <string name="add_task">اضافة مهمة</string>
+    <string name="time">الوقت</string>
 </resources>

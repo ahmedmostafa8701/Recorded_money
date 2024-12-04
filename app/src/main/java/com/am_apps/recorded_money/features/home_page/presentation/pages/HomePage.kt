@@ -30,7 +30,7 @@ fun HomePage(navController: NavController, viewModel: HomePageViewModel) {
     val recordsState = viewModel.recordsState.collectAsState()
     val dialogState = viewModel.dialogState.collectAsState()
     val onRecordClicked: (recordId: Long) -> Unit = { recordId ->
-        navController.navigate(Screen.Attachment.withArgs(recordId.toString()))
+        navController.navigate(Screen.Task.withArgs(recordId.toString()))
     }
     Scaffold(
         topBar = { CustomAppBar(title = stringResource(id = R.string.home_page_title)) },

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -30,8 +31,8 @@ import com.am_apps.recorded_money.ui.theme.RecordedMoneyTheme
 fun TaskCard(
     task: TaskModel,
     modifier: Modifier = Modifier,
-    onDelete: (record: TaskModel) -> Unit = {},
-    onUpdate: (record: TaskModel) -> Unit = {},
+    onDelete: (task: TaskModel) -> Unit = {},
+    onUpdate: (task: TaskModel) -> Unit = {},
 ) {
     val style = MaterialTheme.typography.bodyMedium
     Box(
@@ -42,7 +43,8 @@ fun TaskCard(
                 1.dp,
                 MaterialTheme.colorScheme.secondary,
                 shape = RoundedCornerShape(responsiveSize(20))
-            ).padding(responsiveSize(10)),
+            )
+            .padding(responsiveSize(10)),
     ) {
         Column(
             horizontalAlignment = Alignment.Start,
@@ -58,7 +60,11 @@ fun TaskCard(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     CustomIcon(iconId = R.drawable.clock)
-                    Text(text = task.date, style = style)
+                    Row(horizontalArrangement = Arrangement.Absolute.Left){
+                        Text(text = task.date, style = style)
+                        Spacer(modifier = Modifier.padding(horizontal = responsiveWidth(3)))
+                        Text(text = task.time, style = style)
+                    }
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(responsiveWidth(5))) {
                     CustomIcon(iconId = R.drawable.edit, clickable = { onUpdate(task) })
@@ -94,7 +100,7 @@ fun TaskCard(
 fun TaskCardPreview() {
     RecordedMoneyTheme {
         TaskCard(
-            task = TaskModel(0, "مهمة 1", 20.0, "2022-10-10", 1),
+            task = TaskModel(0, "مهمة 1", 20.0, "2022-10-10", "10:30", 1),
             onDelete = {},
             onUpdate = {},
             modifier = Modifier.padding(horizontal = responsiveWidth(20))

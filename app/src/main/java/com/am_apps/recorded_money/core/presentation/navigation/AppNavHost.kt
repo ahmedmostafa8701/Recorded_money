@@ -10,6 +10,8 @@ import androidx.navigation.navArgument
 import com.am_apps.recorded_money.features.attachments.presentation.pages.AttachmentPage
 import com.am_apps.recorded_money.features.attachments.presentation.view_model.AttachmentViewModel
 import com.am_apps.recorded_money.features.home_page.presentation.pages.HomePage
+import com.am_apps.recorded_money.features.tasks.presentation.pages.TasksPage
+import com.am_apps.recorded_money.features.tasks.presentation.view_model.TasksViewModel
 
 @Composable
 fun AppNavHost() {
@@ -21,11 +23,20 @@ fun AppNavHost() {
         composable(
             Screen.Attachment.route + "/{recordId}",
             arguments = listOf(
-                navArgument("recordId"){ type = NavType.StringType}
+                navArgument("recordId"){ type = NavType.LongType}
             )
         ) { backStackEntry ->
             val attachmentViewModel: AttachmentViewModel = hiltViewModel(backStackEntry)
             AttachmentPage(attachmentViewModel)
+        }
+        composable(
+            Screen.Task.route + "/{recordId}",
+            arguments = listOf(
+                navArgument("recordId"){ type = NavType.LongType}
+            )
+        ) { backStackEntry ->
+            val taskViewModel: TasksViewModel = hiltViewModel(backStackEntry)
+            TasksPage(taskViewModel)
         }
     }
 }

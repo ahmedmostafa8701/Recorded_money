@@ -20,7 +20,8 @@ class TasksViewModel @Inject constructor(
     private val recordId: Long? = stateHandle["recordId"]
     private val _tasksState = MutableStateFlow<List<TaskModel>>(emptyList())
     val tasksState = _tasksState.asStateFlow()
-
+    private val _dialogState = MutableStateFlow<TaskDialogState>(TaskDialogState.Dismiss)
+    val dialogState = _dialogState.asStateFlow()
     init {
         loadTasks()
     }
@@ -41,5 +42,18 @@ class TasksViewModel @Inject constructor(
         viewModelScope.launch {
             recordId?.let { _tasksState.value = tasksLocalRepo.fetchTasks(it) }
         }
+    }
+    fun showAddDialog(){
+        recordId?.let {
+            _dialogState.value = TaskDialogState.Enable(it)
+        }
+    }
+    fun showUpdateDialog(task: TaskModel){
+        recordId?.let {
+            _dialogState.value = TaskDialogState.Enable(it, task)
+        }
+    }
+    fun dismissDialog(){
+        _dialogState.value = TaskDialogState.Dismiss
     }
 }

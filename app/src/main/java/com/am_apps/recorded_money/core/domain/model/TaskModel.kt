@@ -5,5 +5,6 @@ class TaskModel (
     val description:String,
     val spentMoney:Double,
     val date:String,
+    val time: String,
     val recordId:Long
 )
