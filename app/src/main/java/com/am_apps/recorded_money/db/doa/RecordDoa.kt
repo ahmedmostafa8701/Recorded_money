@@ -15,6 +15,8 @@ interface RecordDoa {
     suspend fun insertTask(task: TaskEntity)
     @Delete
     suspend fun deleteRecord(record: RecordEntity)
+    @Delete
+    suspend fun deleteTask(task: TaskEntity)
     @Query("SELECT * FROM RecordEntity")
     suspend fun fetchAllRecords(): List<RecordEntity>
     @Query("SELECT * FROM TaskEntity where recordId = :recordId")
