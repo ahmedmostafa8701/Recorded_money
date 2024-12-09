@@ -27,7 +27,7 @@ fun AppNavHost() {
             )
         ) { backStackEntry ->
             val attachmentViewModel: AttachmentViewModel = hiltViewModel(backStackEntry)
-            AttachmentPage(attachmentViewModel)
+            AttachmentPage(attachmentViewModel, navController)
         }
         composable(
             Screen.Task.route + "/{recordId}",
@@ -36,7 +36,7 @@ fun AppNavHost() {
             )
         ) { backStackEntry ->
             val taskViewModel: TasksViewModel = hiltViewModel(backStackEntry)
-            TasksPage(taskViewModel)
+            TasksPage(taskViewModel, navController = navController)
         }
     }
 }

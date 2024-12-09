@@ -17,7 +17,7 @@ class TasksViewModel @Inject constructor(
     stateHandle: SavedStateHandle
 ):ViewModel() {
 
-    private val recordId: Long? = stateHandle["recordId"]
+    val recordId: Long? = stateHandle["recordId"]
     private val _tasksState = MutableStateFlow<List<TaskModel>>(emptyList())
     val tasksState = _tasksState.asStateFlow()
     private val _dialogState = MutableStateFlow<TaskDialogState>(TaskDialogState.Dismiss)

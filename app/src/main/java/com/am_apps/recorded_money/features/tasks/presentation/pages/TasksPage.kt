@@ -1,15 +1,10 @@
 package com.am_apps.recorded_money.features.tasks.presentation.pages
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,6 +21,7 @@ import com.am_apps.recorded_money.confg.responsiveHeight
 import com.am_apps.recorded_money.confg.responsiveWidth
 import com.am_apps.recorded_money.core.presentation.composables.CustomAppBar
 import com.am_apps.recorded_money.core.presentation.composables.CustomFab
+import com.am_apps.recorded_money.core.presentation.navigation.RecordPageNavBar
 import com.am_apps.recorded_money.db.RecordDatabase
 import com.am_apps.recorded_money.features.home_page.presentation.composables.TotalMoneyDetails
 import com.am_apps.recorded_money.features.tasks.data.TaskLocalRepoImpl
@@ -50,15 +46,7 @@ fun TasksPage(
                 viewModel.showAddDialog()
             }
         },
-        bottomBar = {
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(responsiveHeight(60))
-                .border(1.dp, MaterialTheme.colorScheme.primary)
-            ) {
-
-            }
-        },
+        bottomBar = { RecordPageNavBar(navController = navController, viewModel.recordId!!) },
         modifier = modifier
             .fillMaxSize()
             .systemBarsPadding()
