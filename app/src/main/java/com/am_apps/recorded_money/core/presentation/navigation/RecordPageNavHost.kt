@@ -22,7 +22,7 @@ fun RecordPageNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.AttachmentPage.withArgs(recordId.toString()),
+        startDestination = Screen.TaskPage.withArgs(recordId.toString()),
         modifier = modifier
     ) {
         composable(
