@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.SavedStateHandle
+import androidx.navigation.NavController
 import androidx.room.Room
 import com.am_apps.recorded_money.R
 import com.am_apps.recorded_money.confg.responsiveHeight
@@ -33,18 +34,21 @@ import com.am_apps.recorded_money.ui.theme.RecordedMoneyTheme
 fun TasksPage(
     viewModel: TasksViewModel,
     modifier: Modifier = Modifier,
+    navController: NavController = NavController(LocalContext.current)
 ) {
     val tasksState = viewModel.tasksState.collectAsState()
     val dialogState = viewModel.dialogState.collectAsState()
-    Scaffold (
+    Scaffold(
         topBar = { CustomAppBar(title = stringResource(id = R.string.tasks)) },
-        floatingActionButton = {CustomFab {
-            viewModel.showAddDialog()
-        }},
+        floatingActionButton = {
+            CustomFab {
+                viewModel.showAddDialog()
+            }
+        },
         modifier = modifier
             .fillMaxSize()
             .systemBarsPadding()
-    ){ padding ->
+    ) { padding ->
         val paddingVertical = responsiveHeight(5)
         val paddingHorizontal = responsiveWidth(5)
         Column(
@@ -60,7 +64,7 @@ fun TasksPage(
             TaskListView(
                 tasks = tasksState.value,
                 onDelete = { viewModel.deleteTask(it) },
-                onUpdate = {viewModel.showUpdateDialog(it)},
+                onUpdate = { viewModel.showUpdateDialog(it) },
             )
         }
     }
@@ -78,8 +82,12 @@ fun TasksPage(
 @Preview(showBackground = true, locale = "ar")
 @Composable
 fun TasksPagePreview() {
-    RecordedMoneyTheme{
-        val db = Room.databaseBuilder<RecordDatabase>(LocalContext.current, RecordDatabase::class.java, "recorded_money_db").build()
+    RecordedMoneyTheme {
+        val db = Room.databaseBuilder<RecordDatabase>(
+            LocalContext.current,
+            RecordDatabase::class.java,
+            "recorded_money_db"
+        ).build()
         val repo = TaskLocalRepoImpl(db.recordDoa())
         val viewModel = TasksViewModel(repo, SavedStateHandle())
         TasksPage(viewModel)

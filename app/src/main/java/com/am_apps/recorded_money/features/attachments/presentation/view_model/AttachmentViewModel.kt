@@ -20,17 +20,17 @@ class AttachmentViewModel @Inject constructor(
 ): ViewModel() {
     private var _attachmentState = MutableStateFlow<List<Attachment>>(emptyList())
     val attachmentState = _attachmentState.asStateFlow()
-    private val recordId:String? = savedStateHandle["recordId"]
+    val recordId:Long? = savedStateHandle["recordId"]
     init {
         recordId?.let {
-            loadAttachments(it)
+            loadAttachments(it.toString())
         }
     }
     fun addAttachment(uri: Uri) {
         viewModelScope.launch {
             recordId?.let {
-                attachmentRepo.saveToStorage(uri, recordId)
-                loadAttachments(recordId)
+                attachmentRepo.saveToStorage(uri, recordId.toString())
+                loadAttachments(recordId.toString())
             }
         }
     }

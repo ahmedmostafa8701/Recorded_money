@@ -48,9 +48,9 @@ fun TaskDialog(
     onConfirm: (task: TaskModel) -> Unit,
     taskDialogState: TaskDialogState.Enable
 ) {
-    val buttonSuccessName = if (taskDialogState.enableType == RecordDialogState.ADD_TYPE){
+    val buttonSuccessName = if (taskDialogState.enableType == RecordDialogState.ADD_TYPE) {
         stringResource(id = R.string.add)
-    }else{
+    } else {
         stringResource(id = R.string.update)
     }
     val addRecord: () -> Unit = {
@@ -94,9 +94,15 @@ fun TaskDialog(
                     onValueChange = {},
                     label = { Text(stringResource(id = R.string.date)) },
                     trailingIcon = {
-                        Icon(Icons.Filled.DateRange, contentDescription = null, modifier = Modifier.clickable {
-                            datePicker(context){taskDialogState.recordDate.value = it}
-                        })
+                        Icon(
+                            Icons.Filled.DateRange,
+                            contentDescription = null,
+                            modifier = Modifier.clickable {
+                                datePicker(context) {
+                                    taskDialogState.recordDate.value = it
+                                    taskDialogState.dateError.value = false
+                                }
+                            })
                     },
                     isError = taskDialogState.dateError.value,
                     readOnly = true
@@ -107,7 +113,10 @@ fun TaskDialog(
                     label = { Text(stringResource(id = R.string.time)) },
                     trailingIcon = {
                         CustomIcon(iconId = R.drawable.clock, color = Color.Black, clickable = {
-                            timePicker(context){taskDialogState.recordTime.value = it}
+                            timePicker(context) {
+                                taskDialogState.recordTime.value = it
+                                taskDialogState.timeError.value = false
+                            }
                         })
                     },
                     isError = taskDialogState.timeError.value,
