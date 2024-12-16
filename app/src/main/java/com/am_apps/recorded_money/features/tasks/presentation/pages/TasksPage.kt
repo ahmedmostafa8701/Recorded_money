@@ -21,7 +21,6 @@ import com.am_apps.recorded_money.confg.responsiveHeight
 import com.am_apps.recorded_money.confg.responsiveWidth
 import com.am_apps.recorded_money.core.presentation.composables.CustomAppBar
 import com.am_apps.recorded_money.core.presentation.composables.CustomFab
-import com.am_apps.recorded_money.core.presentation.navigation.RecordPageNavBar
 import com.am_apps.recorded_money.db.RecordDatabase
 import com.am_apps.recorded_money.features.home_page.presentation.composables.TotalMoneyDetails
 import com.am_apps.recorded_money.features.tasks.data.TaskLocalRepoImpl
@@ -46,7 +45,6 @@ fun TasksPage(
                 viewModel.showAddDialog()
             }
         },
-        bottomBar = { RecordPageNavBar(navController = navController, viewModel.recordId!!) },
         modifier = modifier
             .fillMaxSize()
             .systemBarsPadding()

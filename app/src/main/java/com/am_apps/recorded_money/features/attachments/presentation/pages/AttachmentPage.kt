@@ -14,7 +14,6 @@ import com.am_apps.recorded_money.R
 import com.am_apps.recorded_money.confg.responsiveHeight
 import com.am_apps.recorded_money.confg.responsiveWidth
 import com.am_apps.recorded_money.core.presentation.composables.CustomAppBar
-import com.am_apps.recorded_money.core.presentation.navigation.RecordPageNavBar
 import com.am_apps.recorded_money.features.attachments.presentation.composables.AttachmentsView
 import com.am_apps.recorded_money.features.attachments.presentation.view_model.AttachmentViewModel
 
@@ -29,8 +28,7 @@ fun AttachmentPage(
         topBar = { CustomAppBar(title = stringResource(id = R.string.attachment_page_title)) },
         modifier = Modifier
             .systemBarsPadding()
-            .fillMaxSize(),
-        bottomBar = { RecordPageNavBar(navController = navController, viewModel.recordId!!)}
+            .fillMaxSize()
     ) { padding ->
         AttachmentsView(
             modifier = Modifier

@@ -7,11 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.am_apps.recorded_money.features.attachments.presentation.pages.AttachmentPage
-import com.am_apps.recorded_money.features.attachments.presentation.view_model.AttachmentViewModel
 import com.am_apps.recorded_money.features.home_page.presentation.pages.HomePage
-import com.am_apps.recorded_money.features.tasks.presentation.pages.TasksPage
-import com.am_apps.recorded_money.features.tasks.presentation.view_model.TasksViewModel
+import com.am_apps.recorded_money.features.home_page.presentation.pages.RecordPage
 
 @Composable
 fun AppNavHost() {
@@ -21,22 +18,12 @@ fun AppNavHost() {
             HomePage(navController, viewModel = hiltViewModel(backStackEntry))
         }
         composable(
-            Screen.Attachment.route + "/{recordId}",
+            Screen.RecordPage.route + "/{recordId}",
             arguments = listOf(
                 navArgument("recordId"){ type = NavType.LongType}
             )
         ) { backStackEntry ->
-            val attachmentViewModel: AttachmentViewModel = hiltViewModel(backStackEntry)
-            AttachmentPage(attachmentViewModel, navController)
-        }
-        composable(
-            Screen.Task.route + "/{recordId}",
-            arguments = listOf(
-                navArgument("recordId"){ type = NavType.LongType}
-            )
-        ) { backStackEntry ->
-            val taskViewModel: TasksViewModel = hiltViewModel(backStackEntry)
-            TasksPage(taskViewModel, navController = navController)
+            RecordPage(backStackEntry.arguments?.getLong("recordId")!!)
         }
     }
 }
