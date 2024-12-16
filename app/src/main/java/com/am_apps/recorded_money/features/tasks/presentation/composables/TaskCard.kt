@@ -13,6 +13,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -35,6 +39,8 @@ fun TaskCard(
     onUpdate: (task: TaskModel) -> Unit = {},
 ) {
     val style = MaterialTheme.typography.bodyMedium
+    var reminderEnable by remember { mutableStateOf(false) }
+    val reminderIcon = if (reminderEnable) R.drawable.reminder_filled else R.drawable.reminder_unfilled
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -67,12 +73,17 @@ fun TaskCard(
                     }
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(responsiveWidth(5))) {
+                    CustomIcon(iconId = reminderIcon, clickable = {
+                        if (reminderEnable){
+
+                            reminderEnable = false
+                        }else{
+
+                            reminderEnable = true
+                        }
+                    }, color = Color.Yellow)
                     CustomIcon(iconId = R.drawable.edit, clickable = { onUpdate(task) })
-                    CustomIcon(
-                        iconId = R.drawable.delete,
-                        clickable = { onDelete(task) },
-                        color = Color.Red
-                    )
+                    CustomIcon(iconId = R.drawable.delete, clickable = { onDelete(task) }, color = Color.Red)
                 }
             }
             Row(

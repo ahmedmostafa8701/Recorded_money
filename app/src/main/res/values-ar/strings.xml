@@ -16,8 +16,10 @@
     <string name="update">تحديث</string>
     <string name="supported_attachments">المرفقات المدعومة</string>
     <string name="tasks"> المهام</string>
+    <string name="attachments">المرفقات</string>
     <string name="date">التاريخ</string>
     <string name="task_name">اسم المهمة</string>
     <string name="add_task">اضافة مهمة</string>
     <string name="time">الوقت</string>
+    <string name="task_notification_title">تذكير المهمة</string>
 </resources>
