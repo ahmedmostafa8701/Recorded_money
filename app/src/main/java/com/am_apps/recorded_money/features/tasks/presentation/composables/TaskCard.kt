@@ -42,7 +42,7 @@ fun TaskCard(
 ) {
     val style = MaterialTheme.typography.bodyMedium
     val taskReminder = TaskReminder(LocalContext.current, task)
-    var reminderEnable by remember { mutableStateOf(false) }
+    var reminderEnable by remember { mutableStateOf(taskReminder.hasReminder()) }
     val reminderIcon = if (reminderEnable) R.drawable.reminder_filled else R.drawable.reminder_unfilled
     Box(
         modifier = modifier
@@ -77,7 +77,7 @@ fun TaskCard(
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(responsiveWidth(5))) {
                     CustomIcon(iconId = reminderIcon, clickable = {
-                        if (reminderEnable){
+                        if (!reminderEnable){
                             taskReminder.setReminder()
                         }else{
                             taskReminder.cancelReminder()

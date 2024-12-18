@@ -21,8 +21,11 @@ class MyApp : Application(){
     }
     private fun setLocalization(){
         val sharedPreferences = getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
-        val language = sharedPreferences.getString("selected_language", "en") ?: "en"
-        AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(language))
+        val language = sharedPreferences.getString("selected_language", "und") ?: "und"
+        if(language != "und")
+        {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(language))
+        }
     }
     private fun createNotificationChannel() {
         // Create the NotificationChannel, but only on API 26+ because

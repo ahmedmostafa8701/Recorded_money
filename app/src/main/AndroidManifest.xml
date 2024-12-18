@@ -27,7 +27,9 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <receiver android:name=".features.reminder.TaskAlarmReceiver" />
+        <receiver
+            android:name=".features.reminder.TaskAlarmReceiver"
+            android:exported="false"/>
         <activity
             android:name=".ui.MainActivity"
             android:exported="true"

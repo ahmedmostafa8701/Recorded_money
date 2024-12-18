@@ -34,7 +34,6 @@ import com.am_apps.recorded_money.ui.theme.RecordedMoneyTheme
 fun TasksPage(
     viewModel: TasksViewModel,
     modifier: Modifier = Modifier,
-    navController: NavController = NavController(LocalContext.current)
 ) {
     val tasksState = viewModel.tasksState.collectAsState()
     val dialogState = viewModel.dialogState.collectAsState()
