@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomePageViewModel @Inject constructor(
-    private val recordLocalRepo: RecordLocalRepo
+    private val recordLocalRepo: RecordLocalRepo,
 ) : ViewModel(){
     private val _recordsState = MutableStateFlow<RecordState>(RecordState.Initial)
     val recordsState = _recordsState.asStateFlow()
