@@ -2,6 +2,8 @@ package com.am_apps.recorded_money.di
 
 import android.app.Application
 import androidx.room.Room
+import com.am_apps.recorded_money.core.data.LocalRepoRoomImpl
+import com.am_apps.recorded_money.core.domain.repo.LocalRepo
 import com.am_apps.recorded_money.db.RecordDatabase
 import com.am_apps.recorded_money.db.doa.RecordDoa
 import com.am_apps.recorded_money.features.attachments.data.AttachmentRepoImpl
@@ -43,4 +45,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideTasksRepo(recordDao: RecordDoa): TasksLocalRepo = TaskLocalRepoImpl(recordDao)
+
+    @Provides
+    @Singleton
+    fun provideLocalRepo(recordDao: RecordDoa): LocalRepo = LocalRepoRoomImpl(recordDao)
 }

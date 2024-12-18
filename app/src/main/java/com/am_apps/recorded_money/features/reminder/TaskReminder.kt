@@ -15,10 +15,17 @@ class TaskReminder(
 
     fun setReminder(){
         val alarmIntent = Intent(context, TaskAlarmReceiver::class.java).let { intent ->
+            intent.putExtra(TaskAlarmReceiver.TASK_ID_KEY, taskModel.id)
             PendingIntent.getBroadcast(context, taskModel.id.toInt(), intent, 0)
         }
         val calendar = getCalendarFromStrings(taskModel.date, taskModel.time)
-        alarmManager?.setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmIntent)
+        alarmManager?.apply {
+            if (canScheduleExactAlarms()){
+                setExact(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmIntent)
+            }else{
+                set(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, alarmIntent)
+            }
+        }
     }
     fun cancelReminder(){
         val alarmIntent = Intent(context, TaskAlarmReceiver::class.java).let { intent ->
