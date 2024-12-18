@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
+import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
@@ -54,4 +55,14 @@ fun timePicker(context: Context, onTimeSelected: (String) -> Unit){
         onTimeSelected(time)
     }, hour, minute, true)
     timePickerDialog.show()
+}
+
+fun getCalendarFromStrings(date: String, time: String): Calendar{
+    val calendar = Calendar.getInstance()
+    val dateTimeFormat = SimpleDateFormat("yyyy/MM/dd HH:mm")
+    val dateTime = "$date $time"
+    dateTimeFormat.parse(dateTime)?.let { parsedDateTime ->
+        calendar.time = parsedDateTime
+    }
+    return calendar
 }

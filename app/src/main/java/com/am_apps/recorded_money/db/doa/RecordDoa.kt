@@ -25,4 +25,9 @@ interface RecordDoa {
     suspend fun getCollectedMoney(): Double
     @Query("SELECT sum(spentMoney) FROM RecordEntity")
     suspend fun getSpentMoney(): Double
+    @Query("SELECT * From TaskEntity where id = :taskId")
+    suspend fun fetchTask(taskId: Long): TaskEntity
+    @Query("SELECT * From RecordEntity where id = :recordId")
+    suspend fun fetchRecord(recordId: Long): RecordEntity
+
 }

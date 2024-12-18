@@ -87,6 +87,8 @@ dependencies {
     implementation libs.androidx.navigation.compose
     implementation libs.androidx.material
 
+
+
 }
 
 apply plugin: 'com.google.devtools.ksp'
