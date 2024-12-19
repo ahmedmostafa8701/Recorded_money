@@ -2,14 +2,14 @@ package com.am_apps.recorded_money.di
 
 import android.app.Application
 import androidx.room.Room
-import com.am_apps.recorded_money.core.data.LocalRepoRoomImpl
-import com.am_apps.recorded_money.core.domain.repo.LocalRepo
 import com.am_apps.recorded_money.db.RecordDatabase
 import com.am_apps.recorded_money.db.doa.RecordDoa
 import com.am_apps.recorded_money.features.attachments.data.AttachmentRepoImpl
 import com.am_apps.recorded_money.features.attachments.domain.repo.AttachmentRepo
 import com.am_apps.recorded_money.features.home_page.data.RecordLocalRepoRoomImpl
 import com.am_apps.recorded_money.features.home_page.domain.RecordLocalRepo
+import com.am_apps.recorded_money.features.reminder.data.repo.AlarmRepoRoomImpl
+import com.am_apps.recorded_money.features.reminder.domain.repo.AlarmRepo
 import com.am_apps.recorded_money.features.tasks.data.TaskLocalRepoImpl
 import com.am_apps.recorded_money.features.tasks.domain.TasksLocalRepo
 import dagger.Module
@@ -44,9 +44,9 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideTasksRepo(recordDao: RecordDoa): TasksLocalRepo = TaskLocalRepoImpl(recordDao)
+    fun provideTasksRepo(recordDao: RecordDoa, application: Application): TasksLocalRepo = TaskLocalRepoImpl(recordDao, application)
 
     @Provides
     @Singleton
-    fun provideLocalRepo(recordDao: RecordDoa): LocalRepo = LocalRepoRoomImpl(recordDao)
+    fun provideAlarmRepo(recordDao: RecordDoa): AlarmRepo = AlarmRepoRoomImpl(recordDao)
 }

@@ -20,7 +20,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,9 +27,9 @@ import com.am_apps.recorded_money.R
 import com.am_apps.recorded_money.confg.responsiveHeight
 import com.am_apps.recorded_money.confg.responsiveSize
 import com.am_apps.recorded_money.confg.responsiveWidth
+import com.am_apps.recorded_money.core.domain.model.TaskAlarmModel
 import com.am_apps.recorded_money.core.domain.model.TaskModel
 import com.am_apps.recorded_money.core.presentation.composables.CustomIcon
-import com.am_apps.recorded_money.features.reminder.TaskReminder
 import com.am_apps.recorded_money.ui.theme.RecordedMoneyTheme
 
 @Composable
@@ -41,8 +40,8 @@ fun TaskCard(
     onUpdate: (task: TaskModel) -> Unit = {},
 ) {
     val style = MaterialTheme.typography.bodyMedium
-    val taskReminder = TaskReminder(LocalContext.current, task)
-    var reminderEnable by remember { mutableStateOf(taskReminder.hasReminder()) }
+    val viewModel = LocalTaskViewModel.current
+    var reminderEnable by remember { mutableStateOf(viewModel.hasReminder(task.id)) }
     val reminderIcon = if (reminderEnable) R.drawable.reminder_filled else R.drawable.reminder_unfilled
     Box(
         modifier = modifier
@@ -78,12 +77,13 @@ fun TaskCard(
                 Row(horizontalArrangement = Arrangement.spacedBy(responsiveWidth(5))) {
                     CustomIcon(iconId = reminderIcon, clickable = {
                         if (!reminderEnable){
-                            taskReminder.setReminder()
+                            val reminder = TaskAlarmModel(task.id, task.date, task.time)
+                            viewModel.setReminder(reminder)
                         }else{
-                            taskReminder.cancelReminder()
+                            viewModel.cancelReminder(task.id)
                         }
                         reminderEnable = !reminderEnable
-                    }, color = Color.Yellow)
+                    })
                     CustomIcon(iconId = R.drawable.edit, clickable = { onUpdate(task) })
                     CustomIcon(iconId = R.drawable.delete, clickable = { onDelete(task) }, color = Color.Red)
                 }
