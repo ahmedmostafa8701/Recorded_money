@@ -27,8 +27,10 @@
     <string name="task_name">Task Name</string>
     <string name="add_task">Add Task</string>
     <string name="time">Time</string>
-    <string name="task_reminder_channel_name" translatable="false">task reminder channel name</string>
+    <string name="task_reminder_channel_name" translatable="false">task reminder channel</string>
     <string name="task_reminder_channel_description" translatable="false">task reminder channel description</string>
     <string name="task_reminder_channel_id" translatable="false">task reminder channel id</string>
     <string name="task_notification_title">Task Reminder</string>
+    <string name="reschedule_alarm">Rescheduling reminders</string>
+    <string name="reschedule_alarm_desc">Rescheduling loading</string>
 </resources>

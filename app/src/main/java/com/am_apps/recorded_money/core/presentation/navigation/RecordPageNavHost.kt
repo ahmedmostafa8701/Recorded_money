@@ -1,6 +1,7 @@
 package com.am_apps.recorded_money.core.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -11,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.am_apps.recorded_money.features.attachments.presentation.pages.AttachmentPage
 import com.am_apps.recorded_money.features.attachments.presentation.view_model.AttachmentViewModel
+import com.am_apps.recorded_money.features.tasks.presentation.composables.LocalTaskViewModel
 import com.am_apps.recorded_money.features.tasks.presentation.pages.TasksPage
 import com.am_apps.recorded_money.features.tasks.presentation.view_model.TasksViewModel
 
@@ -32,7 +34,9 @@ fun RecordPageNavHost(
             )
         ) { backStackEntry ->
             val taskViewModel: TasksViewModel = hiltViewModel(backStackEntry)
-            TasksPage(taskViewModel, navController = navController)
+            CompositionLocalProvider(LocalTaskViewModel provides taskViewModel) {
+                TasksPage()
+            }
         }
         composable(
             Screen.AttachmentPage.route + "/{recordId}",
@@ -41,7 +45,7 @@ fun RecordPageNavHost(
             )
         ) { backStackEntry ->
             val attachmentViewModel: AttachmentViewModel = hiltViewModel(backStackEntry)
-            AttachmentPage(attachmentViewModel, navController = navController)
+            AttachmentPage(attachmentViewModel)
         }
     }
 }

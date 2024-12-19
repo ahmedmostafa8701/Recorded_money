@@ -3,6 +3,7 @@ package com.am_apps.recorded_money.features.tasks.presentation.view_model
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.am_apps.recorded_money.core.domain.model.TaskAlarmModel
 import com.am_apps.recorded_money.core.domain.model.TaskModel
 import com.am_apps.recorded_money.features.tasks.domain.TasksLocalRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -55,5 +56,18 @@ class TasksViewModel @Inject constructor(
     }
     fun dismissDialog(){
         _dialogState.value = TaskDialogState.Dismiss
+    }
+    fun setReminder(alarmModel: TaskAlarmModel){
+        viewModelScope.launch {
+            tasksLocalRepo.setReminder(alarmModel)
+        }
+    }
+    fun cancelReminder(taskId: Long){
+        viewModelScope.launch {
+            tasksLocalRepo.cancelReminder(taskId)
+        }
+    }
+    fun hasReminder(taskId:Long):Boolean {
+        return tasksLocalRepo.hasReminder(taskId)
     }
 }

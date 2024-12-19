@@ -22,4 +22,6 @@
     <string name="add_task">اضافة مهمة</string>
     <string name="time">الوقت</string>
     <string name="task_notification_title">تذكير المهمة</string>
+    <string name="reschedule_alarm">استعادة التذكيرات</string>
+    <string name="reschedule_alarm_desc">جاري الاستعادة</string>
 </resources>

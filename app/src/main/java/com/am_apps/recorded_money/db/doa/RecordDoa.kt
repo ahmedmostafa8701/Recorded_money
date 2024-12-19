@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
 import com.am_apps.recorded_money.db.entity.RecordEntity
+import com.am_apps.recorded_money.db.entity.TaskAlarmEntity
 import com.am_apps.recorded_money.db.entity.TaskEntity
 
 @Dao
@@ -29,5 +30,10 @@ interface RecordDoa {
     suspend fun fetchTask(taskId: Long): TaskEntity
     @Query("SELECT * From RecordEntity where id = :recordId")
     suspend fun fetchRecord(recordId: Long): RecordEntity
-
+    @Upsert
+    suspend fun insertAlarm(taskAlarmEntity: TaskAlarmEntity)
+    @Query("DELETE FROM TaskAlarmEntity WHERE taskId = :taskId")
+    suspend fun deleteAlarm(taskId: Long)
+    @Query("SELECT * FROM TaskAlarmEntity")
+    suspend fun fetchAllAlarms(): List<TaskAlarmEntity>
 }
