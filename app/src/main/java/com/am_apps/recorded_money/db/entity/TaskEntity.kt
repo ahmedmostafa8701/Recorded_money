@@ -1,9 +1,21 @@
 package com.am_apps.recorded_money.db.entity
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(
+    foreignKeys = [
+        ForeignKey(
+            entity = RecordEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["recordId"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ],
+    indices = [Index(value = ["recordId"])]
+)
 data class TaskEntity (
     @PrimaryKey(autoGenerate = true)
     val id:Long,

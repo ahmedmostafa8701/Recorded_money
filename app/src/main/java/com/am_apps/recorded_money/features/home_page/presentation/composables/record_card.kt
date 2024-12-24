@@ -21,9 +21,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.am_apps.recorded_money.R
-import com.am_apps.recorded_money.confg.responsiveHeight
-import com.am_apps.recorded_money.confg.responsiveSize
-import com.am_apps.recorded_money.confg.responsiveWidth
+import com.am_apps.recorded_money.config.responsiveHeight
+import com.am_apps.recorded_money.config.responsiveSize
+import com.am_apps.recorded_money.config.responsiveWidth
 import com.am_apps.recorded_money.core.domain.model.RecordModel
 
 @Composable

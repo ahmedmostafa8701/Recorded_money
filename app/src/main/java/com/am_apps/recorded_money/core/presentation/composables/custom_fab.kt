@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.am_apps.recorded_money.R
-import com.am_apps.recorded_money.confg.responsiveSize
+import com.am_apps.recorded_money.config.responsiveSize
 
 @Composable
 fun CustomFab(modifier: Modifier = Modifier, painter: Painter = painterResource(id = R.drawable.add), onClick: () -> Unit) {

@@ -8,9 +8,8 @@ import androidx.core.content.FileProvider
 import com.am_apps.recorded_money.features.attachments.domain.repo.AttachmentRepo
 import java.io.File
 import java.io.IOException
-import javax.inject.Inject
 
-class AttachmentRepoImpl @Inject constructor(private val context: Context): AttachmentRepo {
+class AttachmentRepoImpl (private val context: Context): AttachmentRepo {
     override suspend fun saveToStorage(uri: Uri, recordId: String) {
         val contentResolver = context.contentResolver
         val fileName = contentResolver.query(uri, null, null, null, null)?.use { cursor ->
@@ -64,5 +63,12 @@ class AttachmentRepoImpl @Inject constructor(private val context: Context): Atta
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
         context.startActivity(intent)
+    }
+
+    override suspend fun deleteAttachments(recordId: String) {
+        val directory = File(context.filesDir, recordId)
+        if (directory.exists() && directory.isDirectory) {
+            directory.deleteRecursively()
+        }
     }
 }

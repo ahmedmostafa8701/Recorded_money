@@ -17,8 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.SavedStateHandle
 import androidx.room.Room
 import com.am_apps.recorded_money.R
-import com.am_apps.recorded_money.confg.responsiveHeight
-import com.am_apps.recorded_money.confg.responsiveWidth
+import com.am_apps.recorded_money.config.responsiveHeight
+import com.am_apps.recorded_money.config.responsiveWidth
 import com.am_apps.recorded_money.core.presentation.composables.CustomAppBar
 import com.am_apps.recorded_money.core.presentation.composables.CustomFab
 import com.am_apps.recorded_money.db.RecordDatabase

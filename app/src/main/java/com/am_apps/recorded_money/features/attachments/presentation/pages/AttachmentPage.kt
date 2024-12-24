@@ -1,5 +1,6 @@
 package com.am_apps.recorded_money.features.attachments.presentation.pages
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -9,12 +10,17 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.SavedStateHandle
+import com.am_apps.recorded_money.MyApp
 import com.am_apps.recorded_money.R
-import com.am_apps.recorded_money.confg.responsiveHeight
-import com.am_apps.recorded_money.confg.responsiveWidth
+import com.am_apps.recorded_money.config.responsiveHeight
+import com.am_apps.recorded_money.config.responsiveWidth
 import com.am_apps.recorded_money.core.presentation.composables.CustomAppBar
+import com.am_apps.recorded_money.features.attachments.data.AttachmentRepoImpl
 import com.am_apps.recorded_money.features.attachments.presentation.composables.AttachmentsView
 import com.am_apps.recorded_money.features.attachments.presentation.view_model.AttachmentViewModel
+import com.am_apps.recorded_money.ui.theme.RecordedMoneyTheme
 
 @Composable
 fun AttachmentPage(
@@ -39,5 +45,19 @@ fun AttachmentPage(
             attachments = attachments.value,
             onItemClicked = { attachment -> viewModel.openAttachment(attachment, context) },
         )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun AttachmentPagePreview() {
+    val repo = AttachmentRepoImpl(MyApp.instance.applicationContext)
+    val viewModel = AttachmentViewModel(repo, SavedStateHandle())
+    RecordedMoneyTheme {
+        Scaffold { padding ->
+            Box(modifier = Modifier.padding(padding)) {
+                AttachmentPage(viewModel)
+            }
+        }
     }
 }

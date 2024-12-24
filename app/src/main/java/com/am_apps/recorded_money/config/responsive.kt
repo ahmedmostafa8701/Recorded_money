@@ -1,4 +1,4 @@
-package com.am_apps.recorded_money.confg
+package com.am_apps.recorded_money.config
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration

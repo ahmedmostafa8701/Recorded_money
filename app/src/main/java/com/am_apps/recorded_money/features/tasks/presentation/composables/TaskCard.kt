@@ -24,9 +24,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.am_apps.recorded_money.R
-import com.am_apps.recorded_money.confg.responsiveHeight
-import com.am_apps.recorded_money.confg.responsiveSize
-import com.am_apps.recorded_money.confg.responsiveWidth
+import com.am_apps.recorded_money.config.responsiveHeight
+import com.am_apps.recorded_money.config.responsiveSize
+import com.am_apps.recorded_money.config.responsiveWidth
 import com.am_apps.recorded_money.core.domain.model.TaskAlarmModel
 import com.am_apps.recorded_money.core.domain.model.TaskModel
 import com.am_apps.recorded_money.core.presentation.composables.CustomIcon

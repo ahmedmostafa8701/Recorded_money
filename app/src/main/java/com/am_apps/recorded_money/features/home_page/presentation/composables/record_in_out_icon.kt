@@ -21,9 +21,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.sp
 import com.am_apps.recorded_money.R
-import com.am_apps.recorded_money.confg.responsiveSize
-import com.am_apps.recorded_money.confg.responsiveWidth
-import com.am_apps.recorded_money.confg.screenSize
+import com.am_apps.recorded_money.config.responsiveSize
+import com.am_apps.recorded_money.config.responsiveWidth
+import com.am_apps.recorded_money.config.screenSize
 
 @Composable
 fun RecordInOutIcon(collected:Double, spent:Double) {
