@@ -8,9 +8,9 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.am_apps.recorded_money.confg.responsiveHeight
-import com.am_apps.recorded_money.confg.responsiveSize
-import com.am_apps.recorded_money.confg.responsiveWidth
+import com.am_apps.recorded_money.config.responsiveHeight
+import com.am_apps.recorded_money.config.responsiveSize
+import com.am_apps.recorded_money.config.responsiveWidth
 import com.am_apps.recorded_money.features.attachments.domain.model.Attachment
 
 @Composable

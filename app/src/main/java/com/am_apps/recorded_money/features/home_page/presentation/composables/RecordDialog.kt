@@ -25,9 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.am_apps.recorded_money.R
-import com.am_apps.recorded_money.confg.responsiveHeight
-import com.am_apps.recorded_money.confg.responsiveSize
-import com.am_apps.recorded_money.confg.responsiveWidth
+import com.am_apps.recorded_money.config.responsiveHeight
+import com.am_apps.recorded_money.config.responsiveSize
+import com.am_apps.recorded_money.config.responsiveWidth
 import com.am_apps.recorded_money.core.domain.model.RecordModel
 import com.am_apps.recorded_money.features.home_page.presentation.viewmodel.RecordDialogState
 import com.am_apps.recorded_money.ui.theme.RecordedMoneyTheme

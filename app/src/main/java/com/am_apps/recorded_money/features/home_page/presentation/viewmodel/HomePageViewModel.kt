@@ -25,7 +25,7 @@ class HomePageViewModel @Inject constructor(
     private fun loadRecords(){
         viewModelScope.launch(Dispatchers.IO) {
             _recordsState.value = RecordState.Loading
-            recordLocalRepo.getRecords().let { result ->
+            recordLocalRepo.fetchRecords().let { result ->
                 val totalCollected = result.sumOf { it.collectedMoney }
                 val totalSpent = result.sumOf { it.spentMoney }
                 _recordsState.value = RecordState.Success(result, totalCollected, totalSpent)

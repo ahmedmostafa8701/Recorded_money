@@ -5,6 +5,7 @@ import android.net.Uri
 import java.io.File
 
 interface AttachmentRepo {
+
     suspend fun saveToStorage(
         uri:Uri,
         recordId: String
@@ -15,5 +16,8 @@ interface AttachmentRepo {
     suspend fun openAttachment(
         file: File,
         context: Context
+    )
+    suspend fun deleteAttachments(
+        recordId: String
     )
 }
